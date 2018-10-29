@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% extends 'blog/base.html' %}
+<html>
+<body>
+	{% block content %} 
+	<div class="container">
+    <h1>Perros Disponibles</h1>
+	<hr>
+	{{posts}}
+	{% for perro in perro %}
+    <div>
+        <p>published: {{ perro.published_date }}</p>
+        <h1><a class="text-dark">{{ perro.nombre_perro }}</a></h1>
+        <p>{{perro.raza_predominante}}</p>
+        <p>{{perro.descripcion}}</p>
+            {% if perro.foto_perro %}
+            <img src="{{perro.foto_perro.url}}" class="img-responsive card-img-top">
+            {% endif %}
+        <a href="{%url 'login'%}" class="btn btn-success">Adoptar</a>
+
+    </div>
+    </div>
+    {% endfor %}
+
+	{% endblock %}
+</body>
+</html>

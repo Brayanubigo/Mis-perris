@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+{% extends 'blog/base.html' %} 
+
+{% block content %}
+<div class="container">
+<h1>Editar Informacion</h1>
+<form method="post" class="post-form" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p  }}
+    <button type='submit' class="save btn btn-default">Grabar</button>
+</form>
+</div>
+{% endblock %}
+
+</body>
+</html>
