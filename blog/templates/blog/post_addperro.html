@@ -1,18 +1,15 @@
-<!DOCTYPE html>
-<html>
+{% extends 'blog/base.html' %}
 
-<body>
-{% extends 'blog/base.html' %} 
+  {% block content %}
+   <div class="date">
+        {% if post.published_date %}
+            {{ post.published_date }}
+        {% endif %}
+        <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+    </div>
+    <h1>{{ post.nombre_perro }}</h1>
+    <p>{{post.raza_predominante}}</p>
+    <p>{{ post.descripcion|linebreaksbr }}</p>
+    <a href="{%url 'post_list'%}" class="btn btn-primary">Aceptar</a>
 
-{% block content %}
-<div class="container">
-<h1>Agregar Perro</h1>
-<form method="post" class="post-form" enctype="multipart/form-data">{% csrf_token %}
-    {{ form.as_p  }}
-    <button type='submit' class="save btn btn-default">Grabar</button>
-</form>
-</div>
-{% endblock %}
-
-</body>
-</html>
+ {% endblock %}

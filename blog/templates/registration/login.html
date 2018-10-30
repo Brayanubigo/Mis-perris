@@ -2,10 +2,20 @@
 {% block content %}
 
 <h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Login</button>
-</form>
 
+<form method="POST" class="needs-validation" novalidate>
+	{% csrf_token %}
+
+  <div class="form-group">
+    <label >Nombre usuario</label>
+    <input type="text" class="form-control" id="validationCustom01" placeholder="Nombre de Usuario"  name="username"  required>
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+  </div>
+  <div class="form-group">
+    <label >Password</label>
+    <input type="password" class="form-control" id="validationCustom02" name="password" placeholder="Contraseña"  required>
+  </div>
+ 
+  <input type="submit" value="Ingresar"  class="btn-hover color-1 " name="">
+</form>
 {% endblock %}

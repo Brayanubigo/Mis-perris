@@ -23,7 +23,7 @@ from django.conf import settings
 urlpatterns = [
      
   url('perris', views.post_list , name= 'post_list'),  
-  url('usuarios', views.post_list_user , name= 'post_list_user'), 
+  url('perrosdisponibles', views.post_list_user , name= 'post_list_user'), 
   url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
   url(r'^post/new/$', views.post_new, name='post_new'),
   url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
@@ -33,6 +33,7 @@ urlpatterns = [
   path('accounts/', include('django.contrib.auth.urls')),
   url('registro', views.registro , name= 'registro'),
   path('eliminar/<int:pk>', views.post_delete, name='post_delete'),
+
 ]
 urlpatterns +=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
 

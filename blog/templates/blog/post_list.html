@@ -4,7 +4,7 @@
 <body>
 	{% block content %} 
 	<div class="container">
-    <h1>Perros Disponibles</h1>
+    <h1 class="animated fadeInDown">Perros Disponibles</h1>
     <a href="{%url 'post_new' %}" class="btn btn-success"><i class="material-icons">add</i>Agregar nuevo post</a>
 	<hr>
 	{{posts}}
@@ -22,6 +22,7 @@
 
     </div>
     </div>
+
     {% endfor %}
 
 	{% endblock %}

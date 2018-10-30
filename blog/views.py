@@ -16,8 +16,9 @@ def post_list(request):
     return render(request, 'blog/post_list.html', {'perro': perro})
 
 def post_list_user(request):
-    perro = Perros_Rescatados.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    perro = Perros_Rescatados.objects.filter(estado = "Disponible")
     return render(request, 'blog/post_list_user.html', {'perro': perro})
+
 
 def inicio(request):
     perro = Perros_Rescatados.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -51,6 +52,9 @@ def post_new(request):
         else:
             form = Perro_RescatadoForm()
         return render(request, 'blog/post_edit.html', {'form': form})
+
+def login(request):
+    return render(request, 'registration/login.html', {})
 
 # def post_edit(request, pk):
 #         perro = get_object_or_404(Perros_Rescatados, pk=pk)
