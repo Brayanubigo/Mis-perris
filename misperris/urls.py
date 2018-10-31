@@ -18,9 +18,31 @@ from django.contrib import admin
 from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'', include('blog.urls')),
     path('usuario/', include('usuario.urls')),
+   path('accounts/', include('django.contrib.auth.urls')),
+    path('pass-reset/',
+         auth_views.PasswordResetView.as_view(
+             template_name='registration/pass_reset.html'
+         ),
+         name='pass_reset'), 
+    path('pass-reset/done',
+         auth_views.PasswordResetDoneView.as_view(
+             template_name='registration/password_reset_done.html'
+         ),
+         name='pass_reset_done'),
+    path('pass-reset-confirm/<uidb64>/<token>/',
+         auth_views.PasswordResetConfirmView.as_view(
+             template_name='registration/pass_reset_confirm.html'
+         ),
+         name='pass_reset_confirm'),
+    path('pass-reset-complete/',
+         auth_views.PasswordResetCompleteView.as_view(
+             template_name='registration/pass_reset_complete.html'
+         ),
+         name='pass_reset_complete'),
 ]
