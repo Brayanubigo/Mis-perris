@@ -5,14 +5,15 @@
 	{% block content %} 
   
 <div class="container">
-<h1 class="animated fadeInLeft">Perros Disponibles</h1>
+<h1 class="animated fadeInLeft tituloperro">Perros Disponibles</h1>
+<!-- Implementacion de responsive en el apartado de perros disponibles, se utiliza dentro del {for perro} para que cada perro ingresado se pueda ocupar las columnas faltantes  -->
 <div class="row">
     
     {% for perro in perro %}
     <div class="col-12 col-md-6 col-lg-6">
-	   <div class="card mb-3 bg-dark container animated fadeInLeft">
+	   <div class="card mb-3 container animated fadeInLeft" style="background-color: #6DCCAA">
         {% if perro.foto_perro %}
-  <img class="card-img-top image-responsive" src="{{perro.foto_perro.url}}" alt="Card image cap">
+  <img class="card-img-top image-responsive margenimagen rounded" src="{{perro.foto_perro.url}}" alt="Card image cap">
   {% endif %}
   <div class="card-body card-">
     <h3 class="card-title text-white">{{ perro.nombre_perro }}</h3>
@@ -20,14 +21,15 @@
     <p class="card-text text-white">{{perro.descripcion}}</p>
     <p class="card-text"><small class="text-muted">{{ perro.published_date }}</small></p>
     <a href="{%url 'login'%}" class="btn btn-success">Adoptar</a>
+    <a href="#" class="btn btn-success">ESTADO : {{perro.estado}}</a>
   </div>
 </div>
 </div>
  {% endfor %}
+<!-- el enfor tiene que terminar dentro de row aca para que django entienda donde va poniendo los post -->
+</div>
+</div>
 
-</div>
-</div>
-</div>
    
     {% endblock %}
     

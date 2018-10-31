@@ -1,10 +1,129 @@
 {% extends 'blog/base.html' %}
+{% load staticfiles %}
 {% block content %}
+<link href="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script src="//cdn.bootcss.com/moment.js/2.17.1/moment.min.js"></script>
+<script src="//cdn.bootcss.com/bootstrap-datetimepicker/4.17.44/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="{%static 'css/Contact-Form-Clean.css'%}">
+<script src="{% static 'js/Regionycomuna.js' %}"></script>
+<script src="{% static 'js/Validar.js' %}"></script>
+<div class="contact-clean" style="background-color:rgb(103,159,105);">
+       <form method="POST" class="needs-validation" novalidate >
+        {% csrf_token %}
+        <!--{{ form.as_p }}-->
+       <div class="row" >
+         <div class="col-12 col-md-6 col-lg-6">
+             
+    
+                  
+                   <input type="text" id="=username" class="form-control"  placeholder="Nombre de usuario" name="username" required="required">
+            
+         </div>
 
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Guardar</button>
-</form>
+         <div class="col-12 col-md-6 col-lg-6">
+         <div class="" >
+          <div class="">
+                  
+                </div>
+           <input type="text" id="=rut" class="form-control" id="validationCustom02" placeholder="Rut"  name="rut" required="required">
+           <div class="valid-feedback" >
+         
+           </div>
+     </div>
+       </div>
+        </div>
+ 
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6">
+            <div class="form-group" >
+         <label for="email"></label>
+           <input type="email" class="form-control" id="validationCustom03" placeholder="Ingrese Email"  name="email"  required>
+           <div class="valid-feedback" >
+           
+           </div>
+     </div>
+          </div>
+          <div class="col-12 col-mb-6 col-lg-6">
+            <div class="form-group" >
+         <label for="telefono"></label>
+           <input type="text" class="form-control" id="validationCustom04" placeholder="Teléfono"  name="telefono" required="required">
+           <div class="valid-feedback" >
+            
+           </div>
+     </div>
+          </div>
+        </div>
+ 
+     
+        <div class="row">
+          <div class="col-12 col-md-6 col-lg-6">
+            
+         <select class="form-control" id="regiones" name="region"><optgroup label="This is a group"><option value="12" selected>This is item 1</option></optgroup></select>
+          </div>
+          <div class="col-12 col-md-6 col-lg-6">
+           <select class="form-control" id="comunas" name="comuna"><optgroup label="This is a group"><option value="12" selected>This is item 1</option></optgroup></select>
+          </div>
+        </div>
+     
 
-{% endblock %}
+         
+ <div class="row">
+   <div class="col-12 col-md-6 col-lg-6">
+     
+     <div class="form-group" >
+         <label for="tipovivienda">Tipo de Vivienda :</label>
+         <section class="input-field col s12">
+         <select id="tipovivienda" name="tipovivienda"> 
+            <option>Casa con patio grande</option>
+            <option>Casa con patio pequeño</option> 
+            <option>Casa sin patio</option>
+            <option>Departamento</option>
+         </select>
+          </section>
+           <div class="valid-feedback" >
+           
+           </div>
+     </div>
+   </div>
+   <div class="col-12 col-md-6 col-lg-6">
+     <div class="form-group">
+                <label>Fecha de nacimiento : {{form.fecha}}</label>
+            </div>
+        </div>
+
+   
+    </div>
+       <div class="col-12 col-md-6 col-lg-12">
+        <div class="input-group" >
+       <div class="input-group-prepend">
+                  <div class="input-group-text"></div>
+                </div>
+          <input type="password" class="form-control"  name="password1" placeholder="Contraseña"  required>
+          <div class="valid-feedback" >
+    
+          </div>
+    </div>
+ 
+      </div>
+     <div class="col-12 col-md-6 col-lg-12" style="margin-top: 10px;">
+       <div class="input-group" >
+        <div class="input-group-prepend">
+                  <div class="input-group-text"></div>
+                </div>
+           <input type="password" class="form-control"  name="password2" placeholder="Confirmar Contraseña"  required>
+           <div class="valid-feedback" >
+         
+           </div>
+     </div>
+
+     </div>
+ 
+      <button type="submit" class="btn btn-primary">Registrar</button>
+      <a  class="btn btn-primary" href="{% url 'login' %}">Cancelar</a>
+  
+  
+  </form>
+
+ </div>
+
+    {% endblock %}

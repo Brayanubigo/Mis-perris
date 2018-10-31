@@ -39,16 +39,32 @@ def post_detail(request, pk):
 def post_new(request):
         		form = Perro_RescatadoForm()
         		return render(request, 'blog/post_edit.html', {'form': form})
+def post_edit_addperro(request):
+                form = Perro_RescatadoForm()
+                return render(request, 'blog/post_edit_addperro.html', {'form': form})
 
-def post_new(request):
+def post_edit_addperro(request):
         if request.method == "POST":
-            form = Perro_RescatadoForm(request.POST)
+            form = Perro_RescatadoForm(request.POST or None , request.FILES or None)
             if form.is_valid():
                 post = form.save(commit=False)
                 post.author = request.user
                 post.published_date = timezone.now()
                 post.save()
-                return redirect('post_detail', pk=post.pk)
+                return redirect('post_list_user')
+        else:
+            form = Perro_RescatadoForm()
+        return render(request, 'blog/post_edit_addperro.html', {'form': form})
+
+def post_new(request):
+        if request.method == "POST":
+            form = Perro_RescatadoForm(request.POST or None , request.FILES or None)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.published_date = timezone.now()
+                post.save()
+                return redirect('post_list_user')
         else:
             form = Perro_RescatadoForm()
         return render(request, 'blog/post_edit.html', {'form': form})

@@ -26,6 +26,7 @@ urlpatterns = [
   url('perrosdisponibles', views.post_list_user , name= 'post_list_user'), 
   url(r'^post/(?P<pk>[0-9]+)/$', views.post_detail, name='post_detail'),
   url(r'^post/new/$', views.post_new, name='post_new'),
+  url(r'^post/agregar/$', views.post_edit_addperro, name='post_edit_addperro'),
   url(r'^post/(?P<pk>[0-9]+)/edit/$', views.post_edit, name='post_edit'),
   url(r'^$', views.inicio,name ='inicio'),
   #url(r'^post/agregar/$', views.post_addperro, name='post_addperro'),

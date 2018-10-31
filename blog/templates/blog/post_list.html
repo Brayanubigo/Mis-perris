@@ -3,27 +3,40 @@
 <html>
 <body>
 	{% block content %} 
-	<div class="container">
-    <h1 class="animated fadeInDown">Perros Disponibles</h1>
-    <a href="{%url 'post_new' %}" class="btn btn-success"><i class="material-icons">add</i>Agregar nuevo post</a>
-	<hr>
-	{{posts}}
-	{% for perro in perro %}
-    <div>
-        <p>published: {{ perro.published_date }}</p>
-        <h1><a class="text-dark">{{ perro.nombre_perro }}</a></h1>
-        <p>{{perro.raza_predominante}}</p>
-        <p>{{perro.descripcion}}</p>
-            {% if perro.foto_perro %}
-            <img src="{{perro.foto_perro.url}}" class="img-responsive card-img-top">
-            {% endif %}
-        <a href="{% url 'post_edit' pk=perro.pk %}" class="btn btn-info">Editar</a>
-        <a href="{% url 'post_delete' pk=perro.pk %}" class="btn btn-danger">Eliminar</a>
+	<div class="container" >
+<h1 class="animated fadeInLeft tituloperro">Perros Disponibles</h1>
+<a href="{%url 'post_edit_addperro'%}" class="btn btn-dark animated fadeInLeft " >Agregar Perro</a>
+<!-- Implementacion de responsive en el apartado de perros disponibles, se utiliza dentro del {for perro} para que cada perro ingresado se pueda ocupar las columnas faltantes  -->
+<div class="row">
+    
+    {% for perro in perro %}
+    <div class="col-12 col-md-6 col-lg-6">
+       <div class="card mb-3 container animated fadeInLeft" style="background-color: #6DCCAA">
+        {% if perro.foto_perro %}
+  <img class="card-img-top image-responsive margenimagen rounded" src="{{perro.foto_perro.url}}" alt="Card image cap">
+  {% endif %}
+  <div class="card-body card-">
+    <h3 class="card-title text-white">{{ perro.nombre_perro }}</h3>
+    <h6 class="card-title text-white">{{perro.raza_predominante}}</h6>
+    <p class="card-text text-white">{{perro.descripcion}}</p>
+    <p class="card-text"><small class="text-muted">{{ perro.published_date }}</small></p>
+  <a href="{% url 'post_edit' pk=perro.pk %}" class="btn btn-info">Editar</a>
+ <a href="{% url 'post_delete' pk=perro.pk %}" class="btn btn-danger">Eliminar</a>
+ <button class="btn btn-success">ESTADO : {{perro.estado}}</button>
+ 
+  </div>
+</div>
+</div>
+ {% endfor %}
+<!-- el enfor tiene que terminar dentro de row aca para que django entienda donde va poniendo los post -->
+</div>
+</div>
 
-    </div>
-    </div>
+        
 
-    {% endfor %}
+   
+
+
 
 	{% endblock %}
 </body>
